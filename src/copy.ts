@@ -24,6 +24,29 @@ export function pickBusy(): string {
   return BUSY_OPS[i] ?? BUSY_OPS[0];
 }
 
+export const CEREMONIES = {
+  solemn: {
+    kicker: "REQUIEM",
+    title: "THE LAST LIGHT",
+    sub: "The company lays down its arms.",
+    done: "Credits roll on an empty stage.",
+  },
+  funny: {
+    kicker: "EXIT INTERVIEW",
+    title: "THE TAB HAS LEFT THE BUILDING",
+    sub: "It took the cookies. It left a note: 'lmao'.",
+    done: "HR will not be following up.",
+  },
+  oscar: {
+    kicker: "AND THE AWARD GOES TO",
+    title: "CLOSING",
+    sub: "A standing ovation for a window that no longer exists.",
+    done: "Please hold your applause. There is nobody left to hear it.",
+  },
+} as const;
+
+export type CeremonyFlavor = keyof typeof CEREMONIES;
+
 export const COPY = {
   save: {
     kicker: "CLASSIFIED // FT–005",
@@ -37,12 +60,7 @@ export const COPY = {
     sub: "A new frontier has opened. Godspeed.",
     done: "THE COMPANY ADVANCES",
   },
-  ceremony: {
-    kicker: "REQUIEM",
-    title: "THE LAST LIGHT",
-    sub: "The company lays down its arms.",
-    done: "Credits roll on an empty stage.",
-  },
+  ceremony: CEREMONIES.solemn,
   busy: {
     kicker: "ONGOING",
     title: "LOOK BUSY",

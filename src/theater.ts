@@ -1,5 +1,5 @@
 import { playSting, type Sting } from "./audio";
-import { COPY, SAVE_STAGES, pickBusy } from "./copy";
+import { CEREMONIES, COPY, SAVE_STAGES, pickBusy, type CeremonyFlavor } from "./copy";
 
 export type Seq = "save" | "mission" | "ceremony" | "busy";
 
@@ -123,8 +123,14 @@ function missionFrames(): Frame[] {
   ];
 }
 
+let flavor: CeremonyFlavor = "solemn";
+
+export function setFlavor(next: CeremonyFlavor): void {
+  flavor = next;
+}
+
 function ceremonyFrames(): Frame[] {
-  const c = COPY.ceremony;
+  const c = CEREMONIES[flavor];
   return [
     { at: 0, kicker: c.kicker, title: "", sub: "", log: "", pct: 0, sting: "ceremony" },
     { at: 600, title: c.title },

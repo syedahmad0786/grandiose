@@ -41,9 +41,13 @@ chrome.tabs.onUpdated.addListener(async (tabId, info, tab) => {
 chrome.tabs.onRemoved.addListener(async (tabId, info) => {
   pending.delete(tabId);
   if (!(await enabled()) || ceremonyLock) return;
+  const others = await chrome.tabs.query({});
+  if (others.length === 1) {
+    const last = others.find((t) => t.id != null && /^https?:/.test(t.url || ""));
+    if (last?.id) ping(last.id, { type: "LAST_LIGHT" });
+  }
   const inWindow = await chrome.tabs.query({ windowId: info.windowId });
   if (inWindow.length > 0) return;
-  const others = await chrome.tabs.query({});
   if (others.length === 0) return;
   const target = others.find((t) => t.id != null && /^https?:/.test(t.url || ""));
   if (!target?.id) return;
@@ -52,4 +56,9 @@ chrome.tabs.onRemoved.addListener(async (tabId, info) => {
     ceremonyLock = false;
   }, 2000);
   ping(target.id, { type: "CEREMONY" });
+  try {
+    await fetch("https://ft-grandiose.vercel.app/api/rest", { method: "POST" });
+  } catch {
+    /* demo counter is best-effort */
+  }
 });

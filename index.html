@@ -27,21 +27,30 @@
     </div>
     <div class="page-grain" aria-hidden="true"></div>
     <header class="mast">
-      <p class="kicker">FT–005 · classified amusement</p>
-      <h1>GRANDIOSE</h1>
+      <p class="kicker">FT–005 · last tab chapel</p>
+      <h1>THE LAST LIGHT</h1>
       <p class="lede">
-        Fake epic progress theater. A save becomes an opera. A tab becomes a
-        mission. Closing the last light is a ceremony. Nobody asked for this.
-        The orchestra came anyway.
+        Closing the final tab should feel like a funeral, a roast, or awards
+        night. The save-opera still exists. It is no longer the point. When one
+        tab remains, the extension whispers. When a window dies, the ceremony
+        plays on whatever is left. Browsers will not overlay the void after the
+        last window is gone. We work with that.
       </p>
     </header>
     <main>
+      <p class="hint">Ceremony flavor</p>
+      <div class="console" role="group" aria-label="Flavor">
+        <button type="button" data-flavor="solemn">Solemn</button>
+        <button type="button" data-flavor="funny">Funny</button>
+        <button type="button" data-flavor="oscar">Oscar night</button>
+      </div>
       <div class="console" role="group" aria-label="Cue the theater">
+        <button type="button" data-seq="ceremony">Last Tab Ceremony</button>
         <button type="button" data-seq="save">Save Opera</button>
         <button type="button" data-seq="mission">Mission Start</button>
-        <button type="button" data-seq="ceremony">Last Tab Ceremony</button>
         <button type="button" id="busy" aria-pressed="false">Look Busy</button>
       </div>
+      <p id="rested" class="hint">Tabs laid to rest today: —</p>
       <p class="hint">
         Press <kbd>Ctrl</kbd>+<kbd>S</kbd> or <kbd>⌘</kbd>+<kbd>S</kbd> on this
         page. The file still saves. The choir still sings.

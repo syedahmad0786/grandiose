@@ -32,4 +32,24 @@ chrome.runtime.onMessage.addListener((msg) => {
   GrandioseAudio.resume();
   if (msg.type === "MISSION_START") GrandioseTheater.play("mission");
   if (msg.type === "CEREMONY") GrandioseTheater.play("ceremony");
+  if (msg.type === "LAST_LIGHT") {
+    const n = document.createElement("div");
+    n.textContent = "one remains. the last light.";
+    Object.assign(n.style, {
+      position: "fixed",
+      bottom: "28px",
+      left: "50%",
+      transform: "translateX(-50%)",
+      zIndex: "2147483646",
+      background: "#0b0906",
+      color: "#e4c07a",
+      padding: "12px 18px",
+      fontFamily: "Cinzel, Georgia, serif",
+      letterSpacing: "0.14em",
+      fontSize: "13px",
+      pointerEvents: "none",
+    });
+    document.documentElement.append(n);
+    setTimeout(() => n.remove(), 4200);
+  }
 });
