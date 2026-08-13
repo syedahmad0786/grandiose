@@ -3,6 +3,7 @@ import "./style.css";
 import { audio } from "./audio";
 import { bindEscape, isBusy, play, setBusy, setFlavor, type Seq } from "./theater";
 import type { CeremonyFlavor } from "./copy";
+import { bindTilt, grainCss } from "./studio";
 
 function isSaveChord(e: KeyboardEvent): boolean {
   const key = e.key.toLowerCase();
@@ -59,3 +60,10 @@ void fetch("/api/rest")
   .catch(() => undefined);
 
 bindEscape();
+bindTilt(document.querySelector(".console"), 6, 12);
+document.querySelectorAll<HTMLElement>(".console button, #busy").forEach((el) => {
+  bindTilt(el, 8, 10);
+});
+const grain = document.createElement("style");
+grain.textContent = grainCss(0.12);
+document.head.append(grain);

@@ -1,3 +1,5 @@
+@import "./kit/overlays.css";
+@import "./kit/tokens.css";
 :root {
   --gold: #d4af37;
   --gold-bright: #f3e5ab;
@@ -33,9 +35,21 @@ body {
   position: fixed;
   inset: 0;
   z-index: 2;
-  opacity: 0.12;
+  opacity: 0.22;
   mix-blend-mode: overlay;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
+}
+
+.page-grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.45;
+  background: repeating-linear-gradient(
+    180deg,
+    transparent 0 2px,
+    rgba(243, 229, 171, 0.03) 2px 3px
+  );
 }
 
 .page-letterbox {
@@ -87,6 +101,14 @@ body {
 
 .mast { position: relative; z-index: 3; max-width: 42rem; }
 
+.mark {
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 18px;
+  display: block;
+  box-shadow: 0 16px 40px rgba(212, 175, 55, 0.18);
+}
+
 .kicker {
   font-family: "Share Tech Mono", ui-monospace, monospace;
   letter-spacing: 0.42em;
@@ -124,6 +146,7 @@ h1 {
   margin: 36px auto 0;
   max-width: 560px;
   width: 100%;
+  perspective: 900px;
 }
 
 .console button,
@@ -135,11 +158,16 @@ h1 {
   text-transform: uppercase;
   font-size: 12px;
   color: var(--gold-bright);
-  background: transparent;
+  background:
+    linear-gradient(180deg, #1a1608, #0a0a0a);
   border: 1px solid var(--gold);
   padding: 16px 12px;
   cursor: pointer;
-  box-shadow: inset 0 0 24px rgba(212, 175, 55, 0.08);
+  transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateZ(var(--z, 0px));
+  box-shadow:
+    inset 0 1px 0 rgba(243, 229, 171, 0.28),
+    inset 0 -12px 18px rgba(0, 0, 0, 0.45),
+    0 12px 24px rgba(0, 0, 0, 0.35);
   transition: background 0.2s, color 0.2s, box-shadow 0.2s;
 }
 
@@ -198,4 +226,8 @@ kbd {
 
 @media (max-width: 560px) {
   .console { grid-template-columns: 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .console button, #busy { transform: none !important; }
 }
