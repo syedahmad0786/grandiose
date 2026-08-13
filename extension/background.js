@@ -57,7 +57,7 @@ chrome.tabs.onRemoved.addListener(async (tabId, info) => {
   }, 2000);
   ping(target.id, { type: "CEREMONY" });
   try {
-    await fetch("https://ft-grandiose.vercel.app/api/rest", { method: "POST" });
+    await fetch("https://grandiose-seven.vercel.app/api/rest", { method: "POST" });
   } catch {
     /* demo counter is best-effort */
   }
