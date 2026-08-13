@@ -1,0 +1,259 @@
+.gr-root {
+  --gr-gold: #d4af37;
+  --gr-bright: #f3e5ab;
+  --gr-dim: #8a7020;
+  position: fixed;
+  inset: 0;
+  z-index: 2147483646;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  color: var(--gr-bright);
+  font-family: Cinzel, Palatino, "Times New Roman", serif;
+  isolation: isolate;
+  transition: opacity 0.45s ease;
+}
+
+.gr-root.is-on {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.gr-root[data-seq="busy"].is-on {
+  pointer-events: none;
+}
+
+.gr-root::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.78);
+  transition: background 0.6s ease;
+}
+
+.gr-root[data-seq="ceremony"]::before {
+  background: rgba(0, 0, 0, 0.9);
+}
+
+.gr-root[data-seq="busy"]::before {
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.gr-letterbox {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 11vh;
+  background: #000;
+  z-index: 3;
+  transform: scaleY(0);
+  transform-origin: center;
+}
+
+.gr-root.is-on .gr-letterbox {
+  animation: gr-bar 0.55s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.gr-root[data-seq="ceremony"].is-on .gr-letterbox {
+  animation-duration: 1.1s;
+}
+
+.gr-letterbox--top {
+  top: 0;
+  transform-origin: top;
+  border-bottom: 1px solid var(--gr-dim);
+  background:
+    radial-gradient(circle at 6% 50%, #1a1a1a 5px, transparent 6px),
+    radial-gradient(circle at 18% 50%, #1a1a1a 5px, transparent 6px),
+    radial-gradient(circle at 30% 50%, #1a1a1a 5px, transparent 6px),
+    radial-gradient(circle at 42% 50%, #1a1a1a 5px, transparent 6px),
+    radial-gradient(circle at 54% 50%, #1a1a1a 5px, transparent 6px),
+    radial-gradient(circle at 66% 50%, #1a1a1a 5px, transparent 6px),
+    radial-gradient(circle at 78% 50%, #1a1a1a 5px, transparent 6px),
+    radial-gradient(circle at 90% 50%, #1a1a1a 5px, transparent 6px),
+    #000;
+}
+
+.gr-letterbox--bot {
+  bottom: 0;
+  transform-origin: bottom;
+  border-top: 1px solid var(--gr-dim);
+  background:
+    radial-gradient(circle at 6% 50%, #1a1a1a 5px, transparent 6px),
+    radial-gradient(circle at 18% 50%, #1a1a1a 5px, transparent 6px),
+    radial-gradient(circle at 30% 50%, #1a1a1a 5px, transparent 6px),
+    radial-gradient(circle at 42% 50%, #1a1a1a 5px, transparent 6px),
+    radial-gradient(circle at 54% 50%, #1a1a1a 5px, transparent 6px),
+    radial-gradient(circle at 66% 50%, #1a1a1a 5px, transparent 6px),
+    radial-gradient(circle at 78% 50%, #1a1a1a 5px, transparent 6px),
+    radial-gradient(circle at 90% 50%, #1a1a1a 5px, transparent 6px),
+    #000;
+}
+
+.gr-grain {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+  opacity: 0.18;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: gr-flicker 0.18s steps(2) infinite;
+}
+
+.gr-vignette {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, transparent 40%, #000 100%);
+}
+
+.gr-flare {
+  position: absolute;
+  inset: 18vh 0;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0;
+  background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.12), transparent);
+}
+
+.gr-root.is-on .gr-flare {
+  animation: gr-scan 2.8s ease-in-out infinite;
+}
+
+.gr-root[data-seq="ceremony"] .gr-flare {
+  background: radial-gradient(circle at 50% 80%, rgba(212, 175, 55, 0.22), transparent 42%);
+  animation: gr-candle 2.2s ease-in-out infinite;
+  opacity: 1;
+}
+
+.gr-stage {
+  position: relative;
+  z-index: 5;
+  width: min(92vw, 880px);
+  padding: 0 24px;
+  text-align: center;
+}
+
+.gr-kicker {
+  font-family: "Share Tech Mono", ui-monospace, Consolas, monospace;
+  letter-spacing: 0.46em;
+  text-transform: uppercase;
+  font-size: 11px;
+  color: var(--gr-gold);
+  margin: 0 0 18px;
+  min-height: 1em;
+}
+
+.gr-title {
+  font-weight: 900;
+  font-size: clamp(28px, 6.4vw, 78px);
+  letter-spacing: 0.22em;
+  line-height: 0.95;
+  margin: 0;
+  text-transform: uppercase;
+  color: var(--gr-bright);
+  text-shadow: 0 0 42px rgba(212, 175, 55, 0.4);
+  min-height: 1.1em;
+}
+
+.gr-root.is-on .gr-title {
+  animation: gr-title-in 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.gr-sub {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-style: italic;
+  font-size: clamp(16px, 2.2vw, 22px);
+  color: #d9cba3;
+  margin: 16px 0 28px;
+  min-height: 1.4em;
+}
+
+.gr-bar {
+  height: 3px;
+  background: rgba(212, 175, 55, 0.18);
+  overflow: hidden;
+  box-shadow: 0 0 16px rgba(212, 175, 55, 0.25);
+}
+
+.gr-fill {
+  display: block;
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--gr-dim), var(--gr-gold), var(--gr-bright));
+  box-shadow: 0 0 18px var(--gr-gold);
+}
+
+.gr-pct {
+  font-family: "Share Tech Mono", ui-monospace, Consolas, monospace;
+  font-size: 13px;
+  letter-spacing: 0.28em;
+  color: var(--gr-gold);
+  margin: 12px 0 0;
+}
+
+.gr-log {
+  font-family: "Share Tech Mono", ui-monospace, Consolas, monospace;
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #b7a56e;
+  margin: 18px 0 0;
+  min-height: 1.3em;
+}
+
+.gr-root[data-seq="busy"] .gr-title {
+  font-size: clamp(22px, 4vw, 42px);
+}
+
+.gr-root[data-seq="busy"] .gr-letterbox {
+  height: 6vh;
+}
+
+@keyframes gr-bar {
+  to { transform: scaleY(1); }
+}
+
+@keyframes gr-flicker {
+  50% { opacity: 0.1; }
+}
+
+@keyframes gr-scan {
+  0% { opacity: 0; transform: translateY(-8%); }
+  40% { opacity: 1; }
+  100% { opacity: 0; transform: translateY(8%); }
+}
+
+@keyframes gr-candle {
+  0%, 100% { opacity: 0.45; transform: scale(1); }
+  50% { opacity: 0.85; transform: scale(1.04); }
+}
+
+@keyframes gr-title-in {
+  from {
+    opacity: 0;
+    letter-spacing: 0.55em;
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    letter-spacing: 0.22em;
+    filter: blur(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gr-root,
+  .gr-root.is-on .gr-letterbox,
+  .gr-root.is-on .gr-title,
+  .gr-grain,
+  .gr-flare {
+    animation: none !important;
+    transition: none !important;
+  }
+  .gr-root.is-on .gr-letterbox { transform: scaleY(1); }
+}

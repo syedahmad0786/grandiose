@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Grandiose — Fake Epic Progress Theater</title>
+    <meta
+      name="description"
+      content="Mundane browser actions become cinema. Saving a file gets an opera. A new tab is a mission. The last tab is a funeral."
+    />
+    <meta property="og:title" content="Grandiose" />
+    <meta
+      property="og:description"
+      content="Fake epic progress theater for people who refuse to save quietly."
+    />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Share+Tech+Mono&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="page-letterbox page-letterbox--top" aria-hidden="true">
+      <span class="sprocket"></span>
+    </div>
+    <div class="page-grain" aria-hidden="true"></div>
+    <header class="mast">
+      <p class="kicker">FT–005 · classified amusement</p>
+      <h1>GRANDIOSE</h1>
+      <p class="lede">
+        Fake epic progress theater. A save becomes an opera. A tab becomes a
+        mission. Closing the last light is a ceremony. Nobody asked for this.
+        The orchestra came anyway.
+      </p>
+    </header>
+    <main>
+      <div class="console" role="group" aria-label="Cue the theater">
+        <button type="button" data-seq="save">Save Opera</button>
+        <button type="button" data-seq="mission">Mission Start</button>
+        <button type="button" data-seq="ceremony">Last Tab Ceremony</button>
+        <button type="button" id="busy" aria-pressed="false">Look Busy</button>
+      </div>
+      <p class="hint">
+        Press <kbd>Ctrl</kbd>+<kbd>S</kbd> or <kbd>⌘</kbd>+<kbd>S</kbd> on this
+        page. The file still saves. The choir still sings.
+      </p>
+    </main>
+    <footer class="webring">
+      <a href="https://fun-toys.vercel.app">a Fun Toy</a>
+      <span class="dot">·</span>
+      <a href="https://vapor-market.vercel.app">prev</a>
+      <a href="https://term-specter.vercel.app">next</a>
+    </footer>
+    <div class="page-letterbox page-letterbox--bot" aria-hidden="true">
+      <span class="sprocket"></span>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
