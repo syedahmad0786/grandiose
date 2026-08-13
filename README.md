@@ -2,7 +2,7 @@
 
 Mundane browser actions become cinema. Saving a file launches a progress opera. A new tab is a mission start. Closing the last tab is a ceremony. Optional look-busy mode for screen shares.
 
-Live demo: https://grandiose.vercel.app  
+Live demo: https://grandiose-seven.vercel.app  
 Repo: https://github.com/syedahmad0786/grandiose
 
 ## Demo (no install)
